@@ -1,8 +1,8 @@
-# $Id: Makefile.athena,v 1.1 1996-10-12 22:05:01 ghudson Exp $
+# $Id: Makefile.athena,v 1.2 1996-11-20 15:41:24 ghudson Exp $
 
 SHELL=/bin/sh
 
-configure:
+prepare:
 
 clean:
 	${MAKE} -f Makefile.ini clean
