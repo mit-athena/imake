@@ -21,6 +21,10 @@
 #endif
 #endif
 
+#if defined(sparc) || defined(SOLARIS)
+#define imake_ccflags "-Dsparc -DSYSV -DSVR4 -DSOLARIS"
+#endif
+
 #if defined(macII) || defined(_AUX_SOURCE)
 #define imake_ccflags "-DmacII -DSYSV"
 #endif
@@ -32,6 +36,17 @@
 #if defined(USL) || defined(Oki) || defined(NCR)
 #define imake_ccflags "-Xc -DSVR4"
 #endif
+
+#ifdef ultrix
+#include <dbm.h>
+#ifdef BYTESIZ
+#define imake_ccflags "-O -DULTRIX31"
+#else
+#define ULTRIX40
+#define imake_ccflags "-O -DULTRIX40"
+#endif
+#endif
+
 
 #ifdef sony
 #if defined(SYSTYPE_SYSV) || defined(_SYSTYPE_SYSV)
@@ -189,6 +204,13 @@ char *cpp_argv[ARGUMENTS] = {
 #endif
 #ifdef _IBMR2
 	"-D_IBMR2",	/* IBM RS-6000 (we ensured that aix is defined above */
+	"-D_AIX",
+#ifdef _AIX32
+        "-DAIXV=32",
+        "-D_AIX32",
+#else
+        "-DAIXV=31",
+#endif
 #ifndef aix
 #define aix		/* allow BOOTSTRAPCFLAGS="-D_IBMR2" */
 #endif
@@ -258,6 +280,11 @@ char *cpp_argv[ARGUMENTS] = {
 	"-DDELL",
 #endif
 #endif
+#ifdef sparc
+	"-Dsparc",
+	"-DSOLARIS",
+	"-DSYSV",
+#endif
 #ifdef __osf__
 	"-D__osf__",
 # ifdef __mips__
@@ -275,6 +302,9 @@ char *cpp_argv[ARGUMENTS] = {
 #endif
 #ifdef Oki
 	"-DOki",
+#endif
+#ifdef ULTRIX40
+        "-DULTRIX40",
 #endif
 #ifdef sun
 #ifdef SVR4
@@ -328,6 +358,9 @@ struct symtab	predefs[] = {
 #endif
 #ifdef __sparc__
 	{"__sparc__", "1"},
+#endif
+#ifdef SOLARIS
+	{"SOLARIS","1"},
 #endif
 #ifdef hpux
 	{"hpux", "1"},
