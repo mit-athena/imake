@@ -285,6 +285,12 @@ char *cpp_argv[ARGUMENTS] = {
 	"-DSOLARIS",
 	"-DSYSV",
 #endif
+#ifdef sgi
+	"-DIRIX",
+	"-DSGI",
+	"-Dsgi",
+	"-DSYSV",
+#endif
 #ifdef __osf__
 	"-D__osf__",
 # ifdef __mips__
