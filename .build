@@ -1,8 +1,0 @@
-# $Id: .build,v 1.1 1996-09-19 22:40:34 ghudson Exp $
-
-echo In ${package}: make -f Makefile.ini clean && make -f Makefile.ini clean &&
-echo In ${package}: make -f Makefile.ini imake CC=$compiler &&
-make -f Makefile.ini imake CC="$compiler" &&
-echo In ${package}: Installing imake in $srvd/usr/athena/bin &&
-mkdir -p $srvd/usr/athena/bin &&
-install -c -s -m 555 imake $srvd/usr/athena/bin

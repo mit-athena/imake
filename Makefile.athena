@@ -1,0 +1,17 @@
+# $Id: Makefile.athena,v 1.1 1996-10-12 22:05:01 ghudson Exp $
+
+SHELL=/bin/sh
+
+configure:
+
+clean:
+	${MAKE} -f Makefile.ini clean
+
+all:
+	${MAKE} -f Makefile.ini imake CC="$$COMPILER"
+
+check:
+
+install:
+	mkdir -p "$$SRVD/usr/athena/bin"
+	install -c -m 555 imake "$$SRVD/usr/athena/bin"
