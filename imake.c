@@ -501,7 +501,7 @@ LogFatal(x0,x1)
 	char *x0, *x1;
 {
 #ifndef WIN32
-	extern char	*sys_errlist[];
+	extern const char *const sys_errlist[];
 #endif
 	static boolean	entered = FALSE;
 
